@@ -12,8 +12,10 @@
 
 - 如果您认为该项目涉及侵权等一系列问题，我可以随时删库跑路.
 
-<center class="half">
-    <img src="./doc/image/readme-1.png" width="300"/><img src="./doc/image/readme-2.jpg" width="100"/></center>
+<p float="left">
+  <img src="./doc/image/readme-1.png" width="330" />
+  <img src="./doc/image/readme-2.jpg" width="100" />
+</p>
 
 ## ✨特性
 
