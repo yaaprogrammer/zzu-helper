@@ -13,8 +13,8 @@
 - 如果您认为该项目涉及侵权等一系列问题，我可以随时删库跑路.
 
 <p float="left">
-  <img src="./doc/image/readme-1.png" width="330" />
-  <img src="./doc/image/readme-2.jpg" width="100" />
+  <img src="./doc/image/readme-1.png" width="330" alt="cli演示界面"/>
+  <img src="./doc/image/readme-2.jpg" width="100" alt="邮件演示"/>
 </p>
 
 ## ✨特性

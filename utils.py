@@ -137,8 +137,9 @@ class MyLogger:
             logPath = os.path.join(os.getcwd(), "logs")
             if not os.path.isdir(logPath):
                 os.makedirs(logPath)
+            logFilePath = os.path.join(logPath, f"{dateNow}.log")
             logger.add(
-                f'{logPath}\\{dateNow}.log',
+                logFilePath,
                 format="{time:YYYY-MM-DD HH:mm:ss}  |\
 {level}> {elapsed}  | {message}",
                 encoding='utf-8',
