@@ -105,8 +105,13 @@ class EmailController:
 class Configuration:
 
     def __init__(self) -> None:
-        with open('./config.yml', encoding="utf-8") as f:
+        with open('./config.yml', mode="r", encoding="utf-8") as f:
             self.__config = load(f, Loader=FullLoader)
+        if (os.path.exists("./config_custom.yml")):
+            with open('./config_custom.yml', mode="r", encoding="utf-8") as f:
+                customConfig = load(f, Loader=FullLoader)
+                self.__config = DictUtil.deepMerge(self.__config, customConfig)
+                print(self.__config)
         self.__cache = {}
 
     def addProperty(self, key: str, value: any) -> None:
@@ -125,6 +130,25 @@ class Configuration:
             logger.debug(f"读取配置:{item}={config}")
             self.__cache[item] = config
         return config
+
+
+class DictUtil:
+
+    @staticmethod
+    def deepMerge(a, b, path=None):
+        if path is None:
+            path = []
+        for key in b:
+            if key in a:
+                if isinstance(a[key], dict) and isinstance(b[key], dict):
+                    DictUtil.deepMerge(a[key], b[key], path + [str(key)])
+                elif a[key] == b[key]:
+                    pass  # a和b中有相同的键，且值相同
+                else:
+                    a[key] = b[key]  # a和b中有相同的键，覆盖a的值
+            else:
+                a[key] = b[key]  # b有a没有的键，添加到a
+        return a
 
 
 class MyLogger:
