@@ -32,6 +32,10 @@
 
 在Windows下很方便使用，解决Github时常无法访问的问题。如果直接在Github Release下载Termux的apk太慢可以考虑一下。
 
+## 学习Linux基本操作
+
+[看完这篇Linux基本的操作就会了-知乎](https://zhuanlan.zhihu.com/p/36801617)
+
 ## 学习Vim基本操作
 
 [Linux Vim基本操作(文件的打开和编辑)](http://c.biancheng.net/view/805.html)
@@ -54,19 +58,20 @@ vim ~/.bashrc
 export EDITOR="/data/data/com.termux/files/usr/bin/vim"
 ```
 
-添加环境变量至当前Shell  (或者直接重启Termux也可以)
+添加环境变量至当前Shell  (或者直接重启Termux也可以, 就不用输这个了)
 
 ```bash
 source ~/.bashrc
 ```
 
-## Termux pkg换源(可选)
+## Termux换源(可选)
 
 [清华源 Termux 镜像使用帮助](https://mirrors.tuna.tsinghua.edu.cn/help/termux/)
 
 ## 安装必要环境和工具
 
 ```bash
+pkg update
 pkg install python git openssl cronie
 ```
 
@@ -99,17 +104,29 @@ crontab -e
 示例: 每天4:20执行一次填报
 
 ```cronie
-20 4 * * * /data/data/com.termux/files/usr/bin/python /data/data/com.termux/files/home/zzu-helper/main.py
+20 4 * * * /data/data/com.termux/files/usr/bin/python /data/data/com.termux/files/home/zzu-helper/main.py -n
 ```
 
 ## 编辑配置文件
 
-```
+```bash
 cd zzu-helper
-vim config.yml
+vim config_custom.yml
 ```
 
-编辑学号密码和邮件设置，具体见[配置文件详解](./config.md)
+最小配置
+
+```yaml
+zzu:
+    username: xxxxxxx
+    password: xxxxxxx
+```
+
+具体见[配置文件详解](./config.md)
+
+## 开启邮件服务(可选)
+
+[邮件服务配置](./mail-settings.md)
 
 ## 防止Termux被清理
 

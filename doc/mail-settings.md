@@ -18,6 +18,10 @@
 
 4. 编辑配置文件
 
+    ```bash
+    vim config_custom.yml
+    ```
+
     ```yaml
     smtp:
         host: smtp.qq.com
@@ -32,3 +36,5 @@
             - xxxxx@qq.com # 填写你自己的邮箱地址就可以，有多个收件人可以再加
             # - xxxxxx@qq.com
     ```
+
+    **注意**: 配置好邮件后，需要在命令行删除 `-n` 参数，否则不能发送邮件

@@ -46,23 +46,36 @@ pip install -r requirements.txt
 
 ## 配置文件
 
-打开`config.yml`
+新建`config_custom.txt`, 输入以下内容
 
-1. [邮件服务配置](./mail-settings.md)
-2. 更改`zzu.username` `zzu.password`为你自己的学号和密码
+```yaml
+zzu:
+    username: xxxxxxx # 你的学号
+    password: xxxxxxx # 你的密码
+```
+
+保存，修改扩展名为`yml`
 
 ## 测试
 
-在项目文件夹里打开`cmd`或`powershell`等命令行工具，输入`python main.py`, 测试程序是否正常工作
+在项目文件夹里打开`cmd`或`powershell`等命令行工具，输入`python main.py -n`, 测试程序是否正常工作
+
+## 开启邮件服务(可选)
+
+[邮件服务配置](./mail-settings.md)
 
 ## 启动脚本(可选)
 
 创建一个`zzu-helper.txt`,写入启动命令
 
 ```bash
-python D:/path/to/main.py
+python D:/path/to/main.py -n
 ```
 
 修改该文件扩展名为`.bat`
 
 这样就可以双击开始填报啦。
+
+## 设置定时任务(可选)
+
+[Windows 设置定时任务 -知乎](https://zhuanlan.zhihu.com/p/430602325)

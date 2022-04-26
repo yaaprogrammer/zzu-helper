@@ -1,5 +1,21 @@
 # 配置文件详解
 
+## 推荐配置方法
+
+在项目根目录新建一个`config_custom.yml`配置文件，在该文件中同级同名配置会覆盖`config.yml`中的默认配置。这种配置方法可以让你的自定义配置不会在`git pull`后被覆盖。
+
+示例:
+
+```bash
+vim config_custom.yml
+```
+
+```yaml
+zzu:
+    username: xxxxxxx
+    password: xxxxxxx
+```
+
 ## 邮件服务相关配置
 
 详细配置方法在 [邮件服务配置](./mail-settings.md)
