@@ -45,14 +45,26 @@
     pip install -r requirements.txt
     ```
 
-3. 添加定时任务
+3. 配置账号
+
+    ```bash
+    vim config_custom.yml
+    ```
+
+    ```yaml
+    zzu:
+      username: xxxxxxx # 你的学号
+      password: xxxxxxx # 你的密码
+    ```
+
+4. 添加定时任务
 
     ```bash
     crontab -e
     ```
 
     ```cronie
-    20 4 * * * /usr/bin/python3 /root/zzu-helper/main.py
+    20 4 * * * /usr/bin/python3 /root/zzu-helper/main.py -n
     ```
 
 ## 🔤命令行参数
