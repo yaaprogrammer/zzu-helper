@@ -11,18 +11,6 @@ from loguru import logger
 from yaml import FullLoader, load
 
 
-def Singleton(cls):
-    instances = {}
-
-    @wraps(cls)
-    def getinstance(*args, **kw):
-        if cls not in instances:
-            instances[cls] = cls(*args, **kw)
-        return instances[cls]
-
-    return getinstance
-
-
 class Banner:
 
     def __init__(self) -> None:
@@ -97,8 +85,20 @@ class EmailController:
 
     def send(self, title: str, html: str) -> None:
         config = Configuration()
-        if (config.getProperty("args.no_email") is False):
+        if (config.getProperty("smtp.enable") is True):
             self.__send(title=title, html=html)
+
+
+def Singleton(cls):
+    instances = {}
+
+    @wraps(cls)
+    def getinstance(*args, **kw):
+        if cls not in instances:
+            instances[cls] = cls(*args, **kw)
+        return instances[cls]
+
+    return getinstance
 
 
 @Singleton
@@ -110,45 +110,55 @@ class Configuration:
         if (os.path.exists("./config_custom.yml")):
             with open('./config_custom.yml', mode="r", encoding="utf-8") as f:
                 customConfig = load(f, Loader=FullLoader)
-                self.__config = DictUtil.deepMerge(self.__config, customConfig)
-                print(self.__config)
+                self.__config = self.deepMerge(self.__config, customConfig)
         self.__cache = {}
 
     def addProperty(self, key: str, value: any) -> None:
         self.__config[key] = value
 
-    def getProperty(self, item: str) -> None:
-        if (item in self.__cache):
-            return self.__cache[item]
-        config = deepcopy(self.__config)
-        try:
-            for segment in item.split("."):
-                config = config[segment]
-        except KeyError:
-            logger.exception(f"错误的配置属性:{item}")
-        else:
-            logger.debug(f"读取配置:{item}={config}")
-            self.__cache[item] = config
-        return config
-
-
-class DictUtil:
-
-    @staticmethod
-    def deepMerge(a, b, path=None):
+    def deepMerge(self, a, b, path=None):
         if path is None:
             path = []
         for key in b:
             if key in a:
                 if isinstance(a[key], dict) and isinstance(b[key], dict):
-                    DictUtil.deepMerge(a[key], b[key], path + [str(key)])
+                    self.deepMerge(a[key], b[key], path + [str(key)])
                 elif a[key] == b[key]:
-                    pass  # a和b中有相同的键，且值相同
+                    pass
                 else:
-                    a[key] = b[key]  # a和b中有相同的键，覆盖a的值
+                    a[key] = b[key]
             else:
-                a[key] = b[key]  # b有a没有的键，添加到a
+                a[key] = b[key]
         return a
+
+    def setProperty(self, key: str, value: any) -> None:
+        config = self.__config
+        try:
+            segments = key.split(".")
+            for segment in segments:
+                if (not isinstance(config[segment], dict)):
+                    config[segment] = value
+                config = config[segment]
+        except KeyError:
+            logger.exception(f"wrong property key:{key}")
+        else:
+            logger.debug(f"set property:{key}={config}")
+            self.__cache[key] = config
+        pass
+
+    def getProperty(self, key: str) -> None:
+        if (key in self.__cache):
+            return self.__cache[key]
+        config = deepcopy(self.__config)
+        try:
+            for segment in key.split("."):
+                config = config[segment]
+        except KeyError:
+            logger.exception(f"wrong property key:{key}")
+        else:
+            logger.debug(f"read property:{key}={config}")
+            self.__cache[key] = config
+        return config
 
 
 class MyLogger:
@@ -156,7 +166,7 @@ class MyLogger:
     @staticmethod
     def startLogging() -> None:
         config = Configuration()
-        if (config.getProperty("args.log_no_file") is False):
+        if (config.getProperty("logger.enable") is True):
             dateNow = datetime.datetime.now().strftime('%Y-%m-%d')
             logPath = os.path.join(os.getcwd(), "logs")
             if not os.path.isdir(logPath):

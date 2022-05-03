@@ -2,7 +2,7 @@
 Author: Yaaprogrammer
 Date: 2022-04-14 20:54:28
 LastEditors: Yaaprogrammer
-LastEditTime: 2022-04-22 19:47:32
+LastEditTime: 2022-05-03 10:21:18
 
 Copyright (c) 2022 by Yaaprogrammer, All Rights Reserved.
 '''
@@ -47,8 +47,10 @@ def parseArgs():
     argDict = vars(args)
     config.addProperty('args', argDict)
     if (config.getProperty("args.no_email") is True):
+        config.setProperty("smtp.enable", False)
         logger.info("命令行参数: 不发送邮件")
     if (config.getProperty("args.log_no_file") is True):
+        config.setProperty("logger.enable", False)
         logger.info("命令行参数: 不输出日志到文件")
     if (config.getProperty("args.check_only") is True):
         logger.info("命令行参数: 仅进行检查，不进行填报")
@@ -67,9 +69,12 @@ def getRetryTimes():
 
 @retry(stop=stop_after_attempt(getRetryTimes()))
 @logger.catch
-def main():
+def main(event, context):
     banner = Banner()
     banner.printBanner()
+    if (event and context):
+        logger.info("从云函数启动")
+        logger.info(f"event:{event}  context:{context}")
     logger.success("Start main process")
     parseArgs()
     MyLogger.startLogging()
@@ -79,7 +84,7 @@ def main():
 
 if (__name__ == "__main__"):
     try:
-        main()
+        main("", "")
     except Exception:
         message = traceback.format_exc()
         emailController = EmailController()

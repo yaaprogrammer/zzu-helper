@@ -1,4 +1,5 @@
 smtp:
+  enable: true # 是否开启邮件功能 可以在命令行中添加-n参数关闭邮件，覆盖该配置
   host: smtp.qq.com # QQ邮箱smtp服务器为 smtp.qq.com
   user: xxxxxxxx@qq.com 
   password: xxxxxxxx # 如果是QQ邮箱，这里填生成的smtp授权码，不是密码
@@ -10,6 +11,9 @@ smtp:
     receivers:
     - xxxxxxx@qq.com # 填写你自己的邮箱地址就可以，有多个收件人可以再加
     # - xxxxxx@qq.com
+
+logger:
+  enable: true # 是否开启日志记录 可以在命令行中添加-l参数关闭日志，覆盖该配置
 
 retry:
   times: 3  # 主程序重试次数
@@ -31,7 +35,7 @@ zzu:
 
 flag:
   profile: 今日您已经填报过了 # 在个人资料界面表示已填报的标志
-  submit: 感谢您今日上报 # 填报成功的标志
+  submit: 感谢 # 填报成功的标志
   resubmit: 你今日的健康状态上报信息已通过审核 # 重复提交的标志
   fail: 提交失败 #填报失败的标志
 
