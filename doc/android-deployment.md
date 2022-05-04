@@ -107,6 +107,26 @@ crontab -e
 20 4 * * * /data/data/com.termux/files/usr/bin/python /data/data/com.termux/files/home/zzu-helper/main.py -n
 ```
 
+## 启动定时任务服务
+
+```bash
+vim ~/.bash_profile
+```
+
+添加以下内容:
+
+```bash
+if ! pgrep -f "crond" >/dev/null; then
+echo "[Starting crond...]" && crond && echo "[OK]"
+else
+echo "[crond is running]"
+fi
+```
+
+这样每次重启termux就可以自启动`crond`定时任务服务了。
+
+输入`pgrep crond`就可以检查crond是否启动，如果正在运行就会出现一行数字，这是crond进程的ID。
+
 ## 编辑配置文件
 
 ```bash
