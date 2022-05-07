@@ -24,6 +24,7 @@
 
     ```yaml
     smtp:
+        enable: true
         host: smtp.qq.com
         user: xxxxx@qq.com #你的QQ邮箱
         password: xxxxx # 这里填授权码
@@ -36,5 +37,3 @@
             - xxxxx@qq.com # 填写你自己的邮箱地址就可以，有多个收件人可以再加
             # - xxxxxx@qq.com
     ```
-
-    **注意**: 配置好邮件后，需要在命令行删除 `-n` 参数，否则不能发送邮件

@@ -11,9 +11,11 @@ vim config_custom.yml
 ```
 
 ```yaml
+smtp:
+  enable: false # 关闭邮件服务
 zzu:
-    username: xxxxxxx
-    password: xxxxxxx
+  username: xxxxxxx
+  password: xxxxxxx
 ```
 
 ## 邮件服务相关配置
@@ -22,6 +24,7 @@ zzu:
 
 ```yaml
 smtp:
+  enable: true
   host: smtp.qq.com # smtp服务器主机域名
   user: xxxxx@qq.com # 用户名
   password: xxxxx # 密码/授权码

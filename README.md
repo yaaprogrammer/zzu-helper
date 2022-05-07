@@ -52,9 +52,11 @@
     ```
 
     ```yaml
+    smtp:
+        enable: false # 关闭邮件服务
     zzu:
-      username: xxxxxxx # 你的学号
-      password: xxxxxxx # 你的密码
+        username: xxxxxxx # 你的学号
+        password: xxxxxxx # 你的密码
     ```
 
 4. 添加定时任务
@@ -64,7 +66,7 @@
     ```
 
     ```cronie
-    20 4 * * * /usr/bin/python3 /root/zzu-helper/main.py -n
+    20 4 * * * cd /path/to/zzu-helper && /usr/bin/python3 main.py
     ```
 
 ## 🔤命令行参数
@@ -88,7 +90,8 @@ optional arguments:
 - 📊[POST请求数据](./doc/data.md)
 - 🖥️[Windows个人电脑部署](./doc/windows-deployment.md)
 - 📱[安卓手机部署](./doc/android-deployment.md)
-- ☁️[腾讯云函数部署](./doc/tencent-cloud-function-deployment.md)
+- ☁️[腾讯云函数部署(推荐)](./doc/tencent-cloud-function-deployment.md)
+- 🐋[Docker部署(新手不建议)](./doc/docker-deployment.md)
 
 ## 💬已知问题
 

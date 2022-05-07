@@ -14,7 +14,7 @@ from yaml import FullLoader, load
 class Banner:
 
     def __init__(self) -> None:
-        with open('./banner.txt', "r", encoding="utf-8") as f:
+        with open('banner.txt', "r", encoding="utf-8") as f:
             rows = f.readlines()
             self.content = self.__CombineRows(rows)
 
@@ -31,7 +31,7 @@ class Banner:
 class PostDataLoader:
 
     def loadByKey(self, key: str) -> dict:
-        path = "./post_data.json"
+        path = "post_data.json"
         with open(path, encoding='utf-8') as f:
             file = json.load(f)
         logger.info(f"Load json: {path}")
@@ -105,10 +105,10 @@ def Singleton(cls):
 class Configuration:
 
     def __init__(self) -> None:
-        with open('./config.yml', mode="r", encoding="utf-8") as f:
+        with open('config.yml', mode="r", encoding="utf-8") as f:
             self.__config = load(f, Loader=FullLoader)
-        if (os.path.exists("./config_custom.yml")):
-            with open('./config_custom.yml', mode="r", encoding="utf-8") as f:
+        if (os.path.exists("config_custom.yml")):
+            with open('config_custom.yml', mode="r", encoding="utf-8") as f:
                 customConfig = load(f, Loader=FullLoader)
                 self.__config = self.deepMerge(self.__config, customConfig)
         self.__cache = {}
@@ -168,7 +168,7 @@ class MyLogger:
         config = Configuration()
         if (config.getProperty("logger.enable") is True):
             dateNow = datetime.datetime.now().strftime('%Y-%m-%d')
-            logPath = os.path.join(os.getcwd(), "logs")
+            logPath = os.path.join(os.getcwd(), "log")
             if not os.path.isdir(logPath):
                 os.makedirs(logPath)
             logFilePath = os.path.join(logPath, f"{dateNow}.log")

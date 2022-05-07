@@ -7,7 +7,7 @@
 
 缺点:
 
-- 你得一直开着电脑才能做到真正的定时任务
+- 得一直开着电脑
 
 ## 安装Python
 
@@ -49,6 +49,8 @@ pip install -r requirements.txt
 新建`config_custom.txt`, 输入以下内容
 
 ```yaml
+smtp:
+    enable: false
 zzu:
     username: xxxxxxx # 你的学号
     password: xxxxxxx # 你的密码
@@ -58,7 +60,7 @@ zzu:
 
 ## 测试
 
-在项目文件夹里打开`cmd`或`powershell`等命令行工具，输入`python main.py -n`, 测试程序是否正常工作
+在项目文件夹里打开`cmd`或`powershell`等命令行工具，输入`python main.py`, 测试程序是否正常工作
 
 ## 开启邮件服务(可选)
 
@@ -69,7 +71,7 @@ zzu:
 创建一个`zzu-helper.txt`,写入启动命令
 
 ```bash
-python D:/path/to/main.py -n
+python D:/path/to/main.py
 ```
 
 修改该文件扩展名为`.bat`

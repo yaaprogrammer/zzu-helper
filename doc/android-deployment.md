@@ -104,7 +104,7 @@ crontab -e
 示例: 每天4:20执行一次填报
 
 ```cronie
-20 4 * * * /data/data/com.termux/files/usr/bin/python /data/data/com.termux/files/home/zzu-helper/main.py -n
+20 4 * * * cd /data/data/com.termux/files/home/zzu-helper && /data/data/com.termux/files/usr/bin/python main.py
 ```
 
 ## 启动定时任务服务
@@ -137,6 +137,8 @@ vim config_custom.yml
 最小配置
 
 ```yaml
+smtp:
+    enable: false # 关闭邮件服务
 zzu:
     username: xxxxxxx
     password: xxxxxxx

@@ -20,6 +20,8 @@
 7. 在`config.yml`同级目录下创建目录`config_custom.yml`
 
    ```yaml
+   smtp:
+      enable: false
    zzu:
       username: xxxxxxx # 你的学号
       password: xxxxxxx # 你的密码
