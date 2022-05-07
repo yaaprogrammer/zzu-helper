@@ -12,4 +12,4 @@
     ```
 
 3. `docker build -t zzu-helper:v1.0 .`  构建镜像
-4. `docker run -d zzu-helper:v1.2` 运行容器
+4. `docker run -d zzu-helper:v1.0` 运行容器
