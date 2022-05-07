@@ -66,18 +66,6 @@ zzu:
 
 [邮件服务配置](./mail-settings.md)
 
-## 启动脚本(可选)
-
-创建一个`zzu-helper.txt`,写入启动命令
-
-```bash
-python D:/path/to/main.py
-```
-
-修改该文件扩展名为`.bat`
-
-这样就可以双击开始填报啦。
-
 ## 设置定时任务(可选)
 
 [Windows 设置定时任务 -知乎](https://zhuanlan.zhihu.com/p/430602325)
