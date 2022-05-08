@@ -133,3 +133,4 @@ config_custom.yml
 
 # logs
 logs/
+log/
