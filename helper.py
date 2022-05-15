@@ -2,7 +2,7 @@
 Author: Yaaprogrammer
 Date: 2022-04-14 19:10:04
 LastEditors: Yaaprogrammer
-LastEditTime: 2022-04-22 19:51:09
+LastEditTime: 2022-05-15 12:11:04
 
 Copyright (c) 2022 by Yaaprogrammer, All Rights Reserved.
 '''
@@ -135,6 +135,7 @@ class Helper:
         data = self.__fillEntryPostData()
         url = self.__config.getProperty("url.post")
         self.__post(url, data)
+        logger.debug(self.__crawler.response)
 
     def __submitTable(self):
         data = self.__fillSubmitPostData()

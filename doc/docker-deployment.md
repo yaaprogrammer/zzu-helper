@@ -13,3 +13,5 @@
 
 3. `docker build -t zzu-helper:v1.0 .`  构建镜像
 4. `docker run -d zzu-helper:v1.0` 运行容器
+
+注: `apk-requirements.txt`是alpine的apk依赖，它和`requirements.txt`中的python依赖都会在构建镜像时安装进去。
