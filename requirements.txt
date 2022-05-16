@@ -4,7 +4,6 @@ regex
 requests
 tenacity
 urllib3
-cryptography
 pyOpenSSL
 certifi
 idna

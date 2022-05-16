@@ -64,7 +64,7 @@ export EDITOR="/data/data/com.termux/files/usr/bin/vim"
 source ~/.bashrc
 ```
 
-## Termux换源(可选)
+## apt换源(可选)
 
 [清华源 Termux 镜像使用帮助](https://mirrors.tuna.tsinghua.edu.cn/help/termux/)
 
