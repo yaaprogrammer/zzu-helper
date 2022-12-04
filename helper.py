@@ -2,7 +2,7 @@
 Author: Yaaprogrammer
 Date: 2022-04-14 19:10:04
 LastEditors: Yaaprogrammer
-LastEditTime: 2022-05-15 12:11:04
+LastEditTime: 2022-09-25 08:55:07
 
 Copyright (c) 2022 by Yaaprogrammer, All Rights Reserved.
 '''
@@ -89,8 +89,8 @@ class Helper:
         entryData = {}
         entryData.update(entryFixedData)
         entryData.update(self.__getTwoId())
-        self.__setFun18Pair()
-        entryData.update(self.__fun18Pair)
+        # self.__setFun18Pair()
+        # entryData.update(self.__fun18Pair)
         return entryData
 
     def __fillSubmitPostData(self) -> dict:
@@ -99,7 +99,6 @@ class Helper:
         submitData = {}
         submitData.update(submitFixedData)
         submitData.update(self.__getTwoId())
-        submitData.update(self.__fun18Pair)
         return submitData
 
     def __login(self) -> None:

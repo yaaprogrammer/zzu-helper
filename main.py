@@ -46,13 +46,13 @@ def parseArgs():
     config = Configuration()
     argDict = vars(args)
     config.addProperty('args', argDict)
-    if (config.getProperty("args.no_email") is True):
+    if config.getProperty("args.no_email") is True:
         config.setProperty("smtp.enable", False)
         logger.info("命令行参数: 不发送邮件")
-    if (config.getProperty("args.log_no_file") is True):
+    if config.getProperty("args.log_no_file") is True:
         config.setProperty("logger.enable", False)
         logger.info("命令行参数: 不输出日志到文件")
-    if (config.getProperty("args.check_only") is True):
+    if config.getProperty("args.check_only") is True:
         logger.info("命令行参数: 仅进行检查，不进行填报")
 
 
@@ -72,7 +72,7 @@ def getRetryTimes():
 def main(event, context):
     banner = Banner()
     banner.printBanner()
-    if (event and context):
+    if event and context:
         logger.info("从云函数启动")
         logger.info(f"event:{event}  context:{context}")
     logger.success("Start main process")
@@ -82,7 +82,7 @@ def main(event, context):
     run()
 
 
-if (__name__ == "__main__"):
+if __name__ == "__main__":
     try:
         main("", "")
     except Exception:
